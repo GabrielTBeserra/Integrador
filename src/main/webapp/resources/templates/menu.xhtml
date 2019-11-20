@@ -53,7 +53,11 @@
 							update="page-content" 
 							onerror="startError();"
 							action="#{pages.servicos}"
-							styleClass="menu-bar-nav-button" />
+							styleClass="menu-bar-nav-button" >
+							
+							<f:actionListener binding="#{servicos.init()}"/>
+							
+							</p:commandButton>
 							
 							
 							<p:commandButton value="Admin" 
@@ -62,7 +66,6 @@
 							render="@form"
 							update="page-content" 
 							onerror="startError();"
-							action="#{pages.servicos}"
 							rendered="#{pages.admin == '2'}"
 							styleClass="menu-bar-nav-button" />
 							

@@ -48,10 +48,6 @@ public class AuthFilter implements Filter {
 		HttpSession sess = ((HttpServletRequest) request).getSession(true);
 		
 
-		System.out.println(sess.getAttribute("user"));
-
-		System.out.println(AuthFilter.contexturl);
-
 		if (sess.getAttribute("user") == null) {
 			((HttpServletResponse) response).sendRedirect(loginURL);
 

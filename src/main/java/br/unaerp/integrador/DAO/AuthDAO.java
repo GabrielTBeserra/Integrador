@@ -31,7 +31,6 @@ public class AuthDAO {
 			ResultSet resultado = state.executeQuery(stringConsulta.toUpperCase());
 
 			while (resultado.next()) {
-
 				admin.setId(resultado.getInt("idFuncionario"));
 				admin.setNivel(resultado.getInt("nivelPermissao"));
 				admin.setNome(resultado.getString("nomeFuncionario"));

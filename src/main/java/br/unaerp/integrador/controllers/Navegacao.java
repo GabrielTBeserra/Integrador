@@ -14,7 +14,6 @@ import br.unaerp.integrador.auth.SessionContext;
 public class Navegacao implements Serializable {
 	@ManagedProperty(value = "#{servicos}")
 	private String admin;
-	Servicos servicos;
 
 	private String page = "/pages/agendamentos.xhtml";
 
@@ -35,17 +34,9 @@ public class Navegacao implements Serializable {
 	}
 
 	public void servicos() {
-		servicos.init();
 		setPage("/pages/servicos.xhtml");
 	}
 
-	public Servicos getServicos() {
-		return servicos;
-	}
-
-	public void setServicos(Servicos servicos) {
-		this.servicos = servicos;
-	}
 
 	public String getAdmin() {
 		return admin;
