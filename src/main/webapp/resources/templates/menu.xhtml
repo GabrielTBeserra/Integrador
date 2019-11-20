@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+
+		<p:graphicImage library="images" name="Rolling-1s-200px.svg"
+			height="110px" />
+	</p:dialog>
+
+	<p:dialog widgetVar="error" modal="true" draggable="false"
+		closable="true" resizable="false" showHeader="true">
+
+		<p:graphicImage library="images" name="error.svg" height="110px" />
+	</p:dialog>
+
+	<div>
+	<p:panelGrid>
+		
+			<div class="menu-bar">
+				<h:form>
+					<p:commandButton value="Agendamento" 
+							onstart="startLoad();"
+							oncomplete="window.location.href = '#/Agendamento'; stopLoad();"
+							render="@form"
+							update="page-content" 
+							onerror="startError();"
+							action="#{pages.agendamento}"
+							styleClass="menu-bar-nav-button" />	
+										
+					<p:commandButton value="Cadastrar" 
+							onstart="startLoad();"
+							oncomplete="window.location.href = '#/Cadastrar'; stopLoad();"
+							render="@form"
+							update="page-content" 
+							onerror="startError();"
+							action="#{pages.cadastrar}"
+							styleClass="menu-bar-nav-button" >
+					<f:actionListener binding="#{cadastro.init()}"/>
+					
+					</p:commandButton>
+					
+							
+						
+						
+						<p:commandButton value="Servicos" 
+							onstart="startLoad();"
+							oncomplete="window.location.href = '#/Servicos'; stopLoad();"
+							render="@form"
+							update="page-content" 
+							onerror="startError();"
+							action="#{pages.servicos}"
+							styleClass="menu-bar-nav-button" />
+							
+							
+							<p:commandButton value="Admin" 
+							onstart="startLoad();"
+							oncomplete="window.location.href = '#/Servicos'; stopLoad();"
+							render="@form"
+							update="page-content" 
+							onerror="startError();"
+							action="#{pages.servicos}"
+							rendered="#{pages.admin == '2'}"
+							styleClass="menu-bar-nav-button" />
+							
+							<p:commandButton value="LOGOUT" 
+							onstart="startLoad();"
+							oncomplete="window.location.href = '/Integrador-0.0.1-SNAPSHOT'; stopLoad();"
+							render="@form"
+							update="page-content" 
+							onerror="startError();"
+							action="#{logout.logout}"
+							styleClass="menu-bar-nav-button" />
+					
+				</h:form>
+			</div>
+		
+		</p:panelGrid>
+	</div>
+</ui:composition>

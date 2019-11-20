@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputScript library="scripts" name="ajaxloaderAuth.js" />
+	<h:outputStylesheet library="styles" name="styleAuth.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="resources/images/logo.jpeg" />
+	<title>LOGIN</title>
+</h:head>
+<h:body>
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+
+		<p:graphicImage library="images" name="Rolling-1s-200px.svg"
+			height="110px" />
+	</p:dialog>
+
+	<p:dialog widgetVar="error" modal="true" draggable="false"
+		closable="true" resizable="false" showHeader="true">
+
+		<p:graphicImage library="images" name="error.svg" height="110px" />
+		
+	</p:dialog>
+	<section>
+		<div>
+		
+			<h:form id="auth-login-form" styleClass="login-form">
+			<p:messages id="messages" showDetail="false" closable="true">
+							<p:autoUpdate />
+						</p:messages>
+				<p:graphicImage library="images" name="logo.jpeg" height="110px" styleClass="login-image-logo" />
+				
+				<p:outputLabel  styleClass="login-form-label" for="usuario"
+					value="Usuario:" />
+	
+				<h:inputText styleClass="login-form-input" value="#{auth.user}"
+					id="usuario" maxlength="50" size="14" required="true" />
+	
+				<p:outputLabel styleClass="login-form-label" for="password"
+					value="Senha:" />
+	
+				<p:inputText type="password" id="password" styleClass="login-form-input" value="#{auth.password}" required="true" />
+		
+				<p:commandButton styleClass="submit-button"
+					onstart="startLoad();" oncomplete="stopLoad();" value="Entrar"
+					actionListener="#{auth.login}" update="auth-login-form" />
+			</h:form>
+		</div>
+	</section>
+</h:body>
+
+</html>

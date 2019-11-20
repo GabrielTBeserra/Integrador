@@ -1,0 +1,193 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+
+		<div>
+			<h:form id="fomulario-cadastro-servico">
+				<p:messages id="messages" showDetail="false" closable="true">
+							<p:autoUpdate />
+						</p:messages>
+				
+			
+			
+				<p:outputLabel styleClass="form-cadastro-label" 
+								for="nome"
+								value="NOME:" />
+
+						<h:inputText styleClass="form-cadastro-item"
+								value="#{cadastro.pessoa.nome}"
+								id="nome" 
+								maxlength="50"
+								size="14" 
+								required="true" />
+								
+						<p:outputLabel style="form-cadastro-label"
+								styleClass="form-cadastro-label" 
+								for="cpf" 
+								value="CPF:" />
+
+						<p:inputMask styleClass="form-cadastro-item" 
+								id="cpf"
+								mask="999.999.999-99" 
+								value="#{cadastro.pessoa.cpf}"
+								size="14" 
+								autocomplete="true"
+								maxlength="14" 
+								required="true"
+								placeholder="___.___.___-__" />	
+						
+						<p:outputLabel style="form-cadastro-label"
+								styleClass="form-cadastro-label" 
+								for="nascimento" 
+								value="Data Nascimento:" />
+						
+						<p:calendar inputStyleClass="form-cadastro-item" 
+								id="nascimento"
+								value="#{cadastro.pessoa.dtnNascimento}"
+								pattern="dd/MM/yyyy"
+								maxlength="10" 
+								required="true" 
+								size="9" 
+								placeholder="__/__/____"
+								mask="99/99/9999" />
+
+
+										
+								
+						<p:outputLabel style="form-cadastro-label"
+								styleClass="form-cadastro-label" 
+								for="telefone" 
+								value="TELEFONE:" />
+
+						<p:inputMask styleClass="form-cadastro-item" 
+								id="telefone"
+								value="#{cadastro.pessoa.telefone}"
+								mask="(99)99999-9999" 
+								size="14" 
+								autocomplete="true"
+								maxlength="14" 
+								required="true"
+								placeholder="()_____-____" />			
+								
+						<p:outputLabel styleClass="form-cadastro-label" 
+								for="end"
+								value="Endereco" />
+
+						<h:inputText styleClass="form-cadastro-item"
+								size="14" 
+								id="end" 
+								value="#{cadastro.pessoa.endereco}"
+								maxlength="50"
+								required="true" />
+								
+						
+								
+					 	<p:commandButton styleClass="form-button insert-button"
+							onstart="startLoad();"
+							oncomplete="stopLoad();"
+							value="Cadastrar" actionListener="#{cadastro.submitForm}"
+							update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
+							
+					</h:form>
+					<h:form id="pessoas-list">	
+						<p:dataTable id="listServico" 
+					var="pessoa"
+					value="#{cadastro.listPessoa}" 
+					widgetVar="listapessoas"
+					multiViewState="true" 
+					rows="15" 
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15, 30,60,80" 
+					rowKey="#{servico.id}"
+					emptyMessage="Não existem cadastros correspondentes a busca!"
+					filteredValue="#{servicos.filterServicos}">
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar por registro:   " />
+					<p:inputText id="globalFilter"
+						onkeypress="if (event.keyCode == 13) { return false; }"
+						onkeyup="PF('listapessoas').filter()" 
+						placeholder="Entre com o termo" />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column headerText="ID" 
+					filterBy="#{pessoa.id}"
+					sortBy="#{pessoa.id}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{pessoa.id}" />
+			</p:column>
+
+			<p:column headerText="Nome" 
+					filterBy="#{pessoa.nome}"
+					sortBy="#{pessoa.nome}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+			
+			<p:column headerText="telefone" 
+					filterBy="#{pessoa.telefone}"
+					sortBy="#{pessoa.telefone}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{pessoa.telefone}" />
+			</p:column>
+			
+			<p:column headerText="Cpf" 
+					filterBy="#{pessoa.cpf}"
+					sortBy="#{pessoa.cpf}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{pessoa.cpf}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton  
+						id="edit"
+						onerror="startError();"
+						onstart="startLoad();"
+						oncomplete="stopLoad(); PF('eventDialog').show();"
+						styleClass="view-button" 
+						actionListener="#{cadastro.edit(pessoa)}"
+						update="#{p:component('edit-servico')}" 
+						value="Editar" ajax="true">
+				</p:commandButton>
+
+				
+				
+			</p:column>
+						
+				</p:dataTable>
+			</h:form>
+			
+			
+			
+			<h:form id="edit-servico">
+				<p:dialog widgetVar="eventDialog" resizable="false" header="Editar pessoa" responsive="true" modal="true">
+	                <p:panelGrid columns="1" id="panelGridEvento" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
+	                  	<p:outputLabel  value="Nome serviço" />
+	                    <p:inputText   value="#{cadastro.pessoaEdit.nome}"  placeholder="Nome" size="30"/>  
+	                    <p:outputLabel styleClass="form-cadastro-label" for="cpf" value="CPF:" />
+						<p:inputMask mask="999.999.999-99" maxlength="14" required="true" id="cpf" placeholder="__/__/____" value="#{cadastro.pessoaEdit.cpf}" />
+						<p:outputLabel styleClass="form-cadastro-label" for="data-nasc" value="Data nascimento:" />
+						<p:calendar pattern="dd/MM/yyyy" required="true" id="data-nasc" value="#{cadastro.pessoaEdit.dtnNascimento}" />
+	                    <p:outputLabel styleClass="form-cadastro-label" for="telefone" value="TELEFONE:" />
+	                    <p:inputMask  mask="(99)99999-9999" value="#{cadastro.pessoaEdit.telefone}" id="telefone" placeholder="()_____-____" size="30"/> 
+	                    <p:outputLabel  value="Endereco" />
+	                    <p:inputText   value="#{cadastro.pessoaEdit.endereco}"  placeholder="Nome" size="30"/>       
+	                </p:panelGrid>
+	                <f:facet name="footer">
+	                    <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;"/>
+	                    <p:commandButton value="Atualizar" update="#{p:component('pessoas-list')},@form" process="@form" actionListener="#{cadastro.atualizar}" />
+	                	<p:commandButton value="Apagar" update="#{p:component('pessoas-list')},@form" onclick="return confirm('Deseja realmente apagar ?')" process="@form" actionListener="#{cadastro.apagar}" />
+	                </f:facet>
+	            </p:dialog>
+			</h:form>
+			
+			
+			
+		</div>
+		
+</ui:composition>

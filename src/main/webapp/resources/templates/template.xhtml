@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Leticia Celestino</title>
+	<h:outputScript library="scripts" name="ajaxloader.js" />
+	<h:outputScript library="scripts" name="scripts.js" />
+	<link rel="shortcut icon" type="image/x-icon" href="resources/images/logo.jpeg" />
+	<h:outputStylesheet library="styles" name="styles.css" />
+</h:head>
+<h:body>
+	<div id="menu">
+		<ui:insert name="header">
+			<ui:include src="/resources/templates/menu.xhtml" />
+		</ui:insert>
+		<div id="content">
+			<p:outputPanel id="page-content" layout="block" autoUpdate="false">
+				<ui:include src="#{pages.page}" />
+			</p:outputPanel>
+		</div>
+	</div>
+</h:body>
+</html>

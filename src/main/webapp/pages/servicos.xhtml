@@ -1,0 +1,115 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div>
+		<h:form id="servico-form">
+			<p:messages id="messages" showDetail="false" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			
+		
+			<p:outputLabel styleClass="form-cadastro-label" for="nome"
+				value="NOME SERVICO:" />
+
+			<h:inputText styleClass="form-cadastro-item" id="nome" maxlength="50"
+				size="14" required="true" value="#{servicos.servico.nome}" />
+
+			<p:outputLabel styleClass="form-cadastro-label" for="preco"
+				value="Preco:" />
+
+			<p:inputNumber required="true" id="preco"
+				value="#{servicos.servico.valor}" />
+
+
+
+			<p:commandButton styleClass="form-button insert-button"
+				onstart="startLoad();" oncomplete="stopLoad();" value="Adicionar"
+				actionListener="#{servicos.submitForm}" update="#{p:component('servico-list')} , servico-form" />
+			
+			</h:form>	
+			<h:form id="servico-list">	
+				<p:dataTable id="listServico" 
+					var="servico"
+					value="#{servicos.listServico}" 
+					widgetVar="listaservicos"
+					multiViewState="true" 
+					rows="15" 
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15, 30,60,80" 
+					rowKey="#{servico.id}"
+					emptyMessage="Não existem cadastros correspondentes a busca!"
+					filteredValue="#{servicos.filterServicos}">
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar por registro:   " />
+					<p:inputText id="globalFilter"
+						onkeypress="if (event.keyCode == 13) { return false; }"
+						onkeyup="PF('listaservicos').filter()" 
+						placeholder="Entre com o termo" />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column headerText="ID" 
+					filterBy="#{servico.id}"
+					sortBy="#{servico.id}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{servico.id}" />
+			</p:column>
+
+			<p:column headerText="Nome" 
+					filterBy="#{servico.nome}"
+					sortBy="#{servico.nome}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{servico.nome}" />
+			</p:column>
+			
+			<p:column headerText="Valor" 
+					filterBy="#{servico.valor}"
+					sortBy="#{servico.valor}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{servico.valor}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton  
+						id="edit"
+						onerror="startError();"
+						onstart="startLoad();"
+						oncomplete="stopLoad(); PF('eventDialog').show();"
+						styleClass="view-button" 
+						actionListener="#{servicos.edit(servico)}"
+						update="#{p:component('edit-servico')}" 
+						value="Editar" ajax="true">
+				</p:commandButton>
+
+				
+				
+			</p:column>
+		</p:dataTable>
+		</h:form>
+		
+		<h:form id="edit-servico">
+			<p:dialog widgetVar="eventDialog" resizable="false" header="Editar serviço" responsive="true" modal="true">
+                <p:panelGrid columns="1" id="panelGridEvento" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
+                  	<p:outputLabel  value="Nove serviço" />
+                    <p:inputText   value="#{servicos.servicoEdit.nome}"  placeholder="Nome" size="30"/>  
+                    <p:outputLabel styleClass="form-cadastro-label" for="preco" value="Preco:" />
+					<p:inputNumber required="true" id="preco" value="#{servicos.servicoEdit.valor}" />
+                            
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;"/>
+                    <p:commandButton value="Atualizar" update="#{p:component('servico-list')},@form" process="@form" actionListener="#{servicos.atualizar}" />
+                	<p:commandButton value="Apagar" update="#{p:component('servico-list')},@form" onclick="return confirm('Deseja realmente apagar ?')" process="@form" actionListener="#{servicos.apagar}" />
+                </f:facet>
+            </p:dialog>
+		</h:form>
+		
+	</div>
+
+</ui:composition>
