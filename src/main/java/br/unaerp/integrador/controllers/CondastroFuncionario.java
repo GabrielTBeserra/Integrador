@@ -32,13 +32,25 @@ public class CondastroFuncionario {
 	}
 
 	public void submitForm() {
+		FuncionarioDAOimple newFunc = new FuncionarioDAOimple();
 
+		try {
+			newFunc.insert(admin);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		init();
 		clear_form();
 	}
 
 	public void atualizar() {
+		FuncionarioDAOimple newFunc = new FuncionarioDAOimple();
 
+		try {
+			newFunc.update(adminEdit);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		init();
 	}
 

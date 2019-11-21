@@ -39,15 +39,14 @@ public class FuncionarioDAOimple implements CadastroFuncionarioDAO {
 	}
 
 	public void update(Admin admin) throws SQLException {
-		String query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ? , senha = ? , nivelPermissao = ? , endereco = ? where id = '"
+		String query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? where idFuncionario = '"
 				+ admin.getId() + "'";
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
 		insert.setString(1, admin.getNome());
 		insert.setString(2, admin.getUsuario());
-		insert.setString(3, admin.getSenha());
-		insert.setInt(4, admin.getNivel());
+		insert.setInt(3, admin.getNivel());
 
 		insert.executeUpdate();
 
@@ -55,7 +54,7 @@ public class FuncionarioDAOimple implements CadastroFuncionarioDAO {
 	}
 
 	public void delete(Admin admin) throws SQLException {
-		String query = "DELETE from funcionario where id ='" + admin.getId() + "'";
+		String query = "DELETE from funcionario where idFuncionario ='" + admin.getId() + "'";
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
