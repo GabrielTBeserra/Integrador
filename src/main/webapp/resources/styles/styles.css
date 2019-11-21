@@ -3,8 +3,12 @@
 	padding: 0px;
 }
 
+body {
+	background-color: #D5D4D4;
+}
 
 .menu-bar {
+	height: 60px;
 	background-color: red;
 }
 

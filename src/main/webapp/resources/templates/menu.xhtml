@@ -67,7 +67,11 @@
 							update="page-content" 
 							onerror="startError();"
 							rendered="#{pages.admin == '2'}"
-							styleClass="menu-bar-nav-button" />
+							action="#{pages.funcionario}"
+							styleClass="menu-bar-nav-button" >
+							
+							<f:actionListener binding="#{cadastrofunc.init()}"/>
+							</p:commandButton>
 							
 							<p:commandButton value="LOGOUT" 
 							onstart="startLoad();"

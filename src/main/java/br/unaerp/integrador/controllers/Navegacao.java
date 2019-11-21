@@ -29,6 +29,10 @@ public class Navegacao implements Serializable {
 		setPage("/pages/cadastrar.xhtml");
 	}
 
+	public void funcionario() {
+		setPage("/pages/funcionario.xhtml");
+	}
+	
 	public void agendamento() {
 		setPage("/pages/agendamentos.xhtml");
 	}

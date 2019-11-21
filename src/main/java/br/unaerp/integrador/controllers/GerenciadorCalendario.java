@@ -22,7 +22,6 @@ import org.primefaces.model.ScheduleModel;
 import br.unaerp.integrador.DAO.AgendamentoDAOImple;
 import br.unaerp.integrador.DAO.PessoaDAOimple;
 import br.unaerp.integrador.DAO.ServicoDAOImple;
-import br.unaerp.integrador.auth.SessionContext;
 
 @ViewScoped
 @ManagedBean(name = "scheduleBean")

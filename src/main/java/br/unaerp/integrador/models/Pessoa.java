@@ -18,7 +18,7 @@ public class Pessoa {
 		this.id = id;
 	}
 
-	public Date getDtnNascimento() {		
+	public Date getDtnNascimento() {
 		return dtnNascimento;
 	}
 

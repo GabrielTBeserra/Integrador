@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.unaerp.integrador.DAO.AuthDAO;
+import br.unaerp.integrador.DAO.FuncionarioDAOimple;
 import br.unaerp.integrador.STATICS.AlertMessages;
 import br.unaerp.integrador.auth.SessionContext;
 import br.unaerp.integrador.models.Admin;
@@ -34,9 +34,9 @@ public class Auth {
 	}
 
 	public void login() {
-		AuthDAO auth = new AuthDAO();
+		FuncionarioDAOimple auth = new FuncionarioDAOimple();
 		
-		Admin admin = auth.isAdmin(this.user, this.password);
+		Admin admin = auth.auth(this.user, this.password);
 		
 		
 		if(admin != null) {

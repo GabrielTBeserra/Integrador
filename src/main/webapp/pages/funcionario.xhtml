@@ -1,0 +1,158 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+
+
+		<div>
+			<h:form id="fomulario-cadastro-servico">
+				<p:messages id="messages" showDetail="false" closable="true">
+							<p:autoUpdate />
+						</p:messages>
+				
+			
+			
+				<p:outputLabel styleClass="form-cadastro-label" 
+								for="nome"
+								value="NOME:" />
+
+						<h:inputText styleClass="form-cadastro-item"
+								value="#{cadastrofunc.admin.nome}"
+								id="nome" 
+								maxlength="50"
+								size="14" 
+								required="true" />
+								
+						<p:outputLabel styleClass="form-cadastro-label" 
+								for="usuario"
+								value="USUARIO:" />
+
+						<h:inputText styleClass="form-cadastro-item"
+								value="#{cadastrofunc.admin.usuario}"
+								id="usuario" 
+								maxlength="50"
+								size="14" 
+								required="true" />
+								
+								
+						<p:selectOneMenu id="console" value="#{cadastrofunc.admin.nivel}" style="width:125px">
+				            <f:selectItem itemLabel="Cadastro clientes" itemValue="1" />
+				            <f:selectItem itemLabel="Acesso total" itemValue="2" />
+				      		            
+				        </p:selectOneMenu>
+						
+						<p:outputLabel styleClass="form-cadastro-label" 
+								for="senha"
+								value="SENHA: " />
+
+						<p:inputText styleClass="form-cadastro-item"
+								value="#{cadastrofunc.admin.senha}"
+								id="senha" 
+								type="password"
+								maxlength="50"
+								size="14" 
+								required="true" />
+					
+								
+					 	<p:commandButton styleClass="form-button insert-button"
+							onstart="startLoad();"
+							oncomplete="stopLoad();"
+							value="Cadastrar" actionListener="#{cadastrofunc.submitForm}"
+							update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
+							
+					</h:form>
+					<h:form id="pessoas-list">	
+						<p:dataTable id="listServico" 
+					var="func"
+					value="#{cadastrofunc.listAdmin}" 
+					widgetVar="listapessoas"
+					multiViewState="true" 
+					rows="15" 
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15, 30,60,80" 
+					rowKey="#{cadastrofunc.id}"
+					emptyMessage="Não existem cadastros correspondentes a busca!"
+					filteredValue="#{cadastrofunc.adminFilter}">
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="Buscar por registro:   " />
+					<p:inputText id="globalFilter"
+						onkeypress="if (event.keyCode == 13) { return false; }"
+						onkeyup="PF('listapessoas').filter()" 
+						placeholder="Entre com o termo" />
+				</p:outputPanel>
+			</f:facet>
+
+			<p:column headerText="ID" 
+					filterBy="#{func.id}"
+					sortBy="#{func.id}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{func.id}" />
+			</p:column>
+
+			<p:column headerText="Nome" 
+					filterBy="#{func.nome}"
+					sortBy="#{func.nome}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{func.nome}" />
+			</p:column>
+			
+			<p:column headerText="Nivel" 
+					filterBy="#{func.nivel}"
+					sortBy="#{func.nivel}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{func.nivel}" />
+			</p:column>
+			
+			<p:column headerText="Usuario" 
+					filterBy="#{func.usuario}"
+					sortBy="#{func.usuario}" 
+					filterMatchMode="contains">					
+				<h:outputText value="#{func.usuario}" />
+			</p:column>
+			
+			
+			<p:column headerText="Ações">
+				<p:commandButton  
+						id="edit"
+						onerror="startError();"
+						onstart="startLoad();"
+						oncomplete="stopLoad(); PF('eventDialog').show();"
+						styleClass="view-button" 
+						actionListener="#{cadastrofunc.edit(func)}"
+						update="#{p:component('edit-servico')}" 
+						value="Editar" ajax="true">
+				</p:commandButton>
+
+				
+				
+			</p:column>
+						
+				</p:dataTable>
+			</h:form>
+			
+			
+			
+			<h:form id="edit-servico">
+				<p:dialog widgetVar="eventDialog" resizable="false" header="Editar pessoa" responsive="true" modal="true">
+	                <p:panelGrid columns="1" id="panelGridEvento" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
+	                  	<p:outputLabel  value="Nome serviço" />
+	                    <p:inputText   value="#{cadastrofunc.adminEdit.nome}"  placeholder="Nome" size="30"/>  
+	                   
+	                </p:panelGrid>
+	                <f:facet name="footer">
+	                    <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;"/>
+	                    <p:commandButton value="Atualizar" update="#{p:component('pessoas-list')},@form" process="@form" actionListener="#{cadastrofunc.atualizar}" />
+	                	<p:commandButton value="Apagar" update="#{p:component('pessoas-list')},@form" onclick="return confirm('Deseja realmente apagar ?')" process="@form" actionListener="#{cadastrofunc.apagar}" />
+	                </f:facet>
+	            </p:dialog>
+			</h:form>
+			
+			
+			
+		</div>
+		
+</ui:composition>
