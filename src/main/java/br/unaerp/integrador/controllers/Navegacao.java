@@ -8,10 +8,19 @@ import javax.faces.bean.ViewScoped;
 
 import br.unaerp.integrador.auth.SessionContext;
 
-@SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean(name = "pages")
 public class Navegacao implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 768635549877384988L;
+
+	/**
+	 * 
+	 */
+	
+
 	@ManagedProperty(value = "#{servicos}")
 	private String admin;
 

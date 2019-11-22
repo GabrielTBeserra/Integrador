@@ -1,91 +1,85 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:p="http://primefaces.org/ui">
-		
-		
-		<div class="pagina-inicial">
-			<div class="loading-image">
-				<p:graphicImage id="loading-list" library="images" name="Rolling-1s-200px.svg"  style="display: none;" height="60px" /> 
-			</div>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-				<script type="text/javascript">
-				    PrimeFaces.locales['pt'] = {
-				    		closeText: 'Fechar',
-				            prevText: 'Anterior',
-				            nextText: 'Próximo',
-				            currentText: 'Começo',
-				            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-				            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
-				            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-				            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-				            dayNamesMin: ['D','S','T','Q','Q','S','S'],
-				            weekHeader: 'Semana',
-				            firstDay: 1,
-				            isRTL: false,
-				            showMonthAfterYear: false,
-				            yearSuffix: '',
-				            timeOnlyTitle: 'Só Horas',
-				            timeText: 'Tempo',
-				            hourText: 'Hora',
-				            minuteText: 'Minuto',
-				            secondText: 'Segundo',
-				            currentText: 'Data Atual',
-				            ampm: false,
-				            month: 'Mês',
-				            week: 'Semana',
-				            day: 'Dia',
-				            allDayText : 'Todo o Dia'
-				    };
-				</script>
-       
-        <p:growl id="avisosGrowl"/>
+
+    <div class="pagina-inicial">
+        <div class="loading-image">
+            <p:graphicImage id="loading-list" library="images" name="Rolling-1s-200px.svg" style="display: none;" height="60px" />
+        </div>
+
+        <script type="text/javascript">
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Data Atual',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>
+
+        <p:growl id="avisosGrowl" />
         <h:form id="agenda">
-            <p:schedule resizable="false" value="#{scheduleBean.model}" styleClass="teste"
-                        widgetVar="scheduleExemplo" 
-                        id="scheduleExemplo" timeZone="GMT-3" locale="pt"
-                        timeFormat="HH:mm" axisFormat="H:mm" 
-                        style="width: 1000px; height: 700px;">
-                <p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />  
-                <p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />                  
+            <p:schedule resizable="false" value="#{scheduleBean.model}" styleClass="teste" widgetVar="scheduleExemplo" id="scheduleExemplo" timeZone="GMT-3" locale="pt" timeFormat="HH:mm" axisFormat="H:mm" style="width: 1000px; height: 700px;">
+                <p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />
+                <p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />
             </p:schedule>
         </h:form>
         <h:form id="scheduleExemploForm">
             <p:dialog widgetVar="eventDialog" resizable="false" header="Horario" responsive="true" modal="true">
                 <p:panelGrid columns="1" id="panelGridEvento" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                    <p:outputLabel  value="Cliente" />
-                    <p:inputText  readonly="true" rendered="#{scheduleBean.evento.titulo != ''}" value="#{scheduleBean.evento.titulo}" placeholder="Título" size="30"/>
-                   <p:outputLabel  rendered="#{scheduleBean.evento.titulo != ''}" value="Servico" />
-                    <p:inputText readonly="true" rendered="#{scheduleBean.evento.titulo != ''}"   value="#{scheduleBean.evento.servico.nome}" placeholder="Servico" size="30"/>
+                    <p:outputLabel value="Cliente" />
+                    <p:inputText readonly="true" rendered="#{scheduleBean.evento.titulo != ''}" value="#{scheduleBean.evento.titulo}" placeholder="Título" size="30" />
+                    <p:outputLabel rendered="#{scheduleBean.evento.titulo != ''}" value="Servico" />
+                    <p:inputText readonly="true" rendered="#{scheduleBean.evento.titulo != ''}" value="#{scheduleBean.evento.servico.nome}" placeholder="Servico" size="30" />
                     <p:selectOneMenu required="true" rendered="#{scheduleBean.evento.titulo == ''}" value="#{scheduleBean.valorPessoa}" style="width:125px">
-			            <f:selectItems value="#{cadastro.listPessoa}" itemLabel="#{pessoa.nome}"  var="pessoa" itemValue="#{pessoa.cpf}"/>
-			        </p:selectOneMenu>
-			        <p:outputLabel  value="Servicos" />
-			        <p:selectOneMenu required="true" value="#{scheduleBean.valorServico}" style="width:125px">
-			            <f:selectItems value="#{servicos.listServico}" itemLabel="#{servico.nome}"  var="servico" itemValue="#{servico.id}"/>
-			        </p:selectOneMenu>
-			        <p:outputLabel  value="Data Inicial" />
-                    <p:calendar pattern="dd/MM/yyyy HH:mm:ss"  value="#{scheduleBean.evento.dataInicio}" placeholder="Data Início">                        
+                        <f:selectItems value="#{cadastro.listPessoa}" itemLabel="#{pessoa.nome}" var="pessoa" itemValue="#{pessoa.cpf}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Servicos" />
+                    <p:selectOneMenu required="true" value="#{scheduleBean.valorServico}" style="width:125px">
+                        <f:selectItems value="#{servicos.listServico}" itemLabel="#{servico.nome}" var="servico" itemValue="#{servico.id}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Data Inicial" />
+                    <p:calendar pattern="dd/MM/yyyy HH:mm:ss" value="#{scheduleBean.evento.dataInicio}" placeholder="Data Início">
                     </p:calendar>
-                    <p:outputLabel  value="Data Final" />
-                    <p:calendar  value="#{scheduleBean.evento.dataFim}" pattern="dd/MM/yyyy HH:mm:ss"  placeholder="Data Fim">                        
+                    <p:outputLabel value="Data Final" />
+                    <p:calendar value="#{scheduleBean.evento.dataFim}" pattern="dd/MM/yyyy HH:mm:ss" placeholder="Data Fim">
                     </p:calendar>
-                    
-                            
+
+
                 </p:panelGrid>
                 <f:facet name="footer">
-                    <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;"/>
-                    <p:commandButton rendered="#{scheduleBean.evento.titulo == ''}" oncomplete="location.reload();" value="Salvar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.salvar()}"/>
-                    <p:commandButton rendered="#{scheduleBean.evento.titulo != ''}" oncomplete="location.reload();" value="Atualizar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.atualizar()}"/>
-                    <p:commandButton value="Remover" oncomplete="location.reload();" update="#{p:component('avisosGrowl')},#{p:component('scheduleExemplo')},#{p:component('agenda')},@form,:agenda" action="#{scheduleBean.remover()}"/>
+                    <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;" />
+                    <p:commandButton rendered="#{scheduleBean.evento.titulo == ''}" oncomplete="location.reload();" value="Salvar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.salvar()}"
+                    />
+                    <p:commandButton rendered="#{scheduleBean.evento.titulo != ''}" oncomplete="location.reload();" value="Atualizar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.atualizar()}"
+                    />
+                    <p:commandButton value="Remover" oncomplete="location.reload();" update="#{p:component('avisosGrowl')},#{p:component('scheduleExemplo')},#{p:component('agenda')},@form,:agenda" action="#{scheduleBean.remover()}" />
                 </f:facet>
             </p:dialog>
-     </h:form>
-			 
-			 
-			 
-		</div>
-		
+        </h:form>
+
+
+
+    </div>
+
 
 </ui:composition>

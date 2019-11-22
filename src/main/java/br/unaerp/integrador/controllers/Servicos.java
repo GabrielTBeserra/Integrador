@@ -18,7 +18,10 @@ public class Servicos implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5854378465069525498L;
+	/**
+	 * 
+	 */
 	private List<Servico> listServico;
 	private List<Servico> filterServicos;
 	private Servico servico;
@@ -65,9 +68,6 @@ public class Servicos implements Serializable {
 		this.servicoEdit = servicoEdit;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public void edit(Servico servico) {
 		this.servicoEdit = servico;

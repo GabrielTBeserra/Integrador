@@ -1,6 +1,7 @@
 package br.unaerp.integrador.models;
 
-public class Servico {
+public class Servico{
+	
 	private String nome;
 	private double valor;
 	private int id;

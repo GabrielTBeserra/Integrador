@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.unaerp.integrador.models.Admin;
 
-public class FuncionarioDAOimple implements CadastroFuncionarioDAO {
+public class FuncionarioDAOimple implements FuncionarioDAO {
 	private ConnectionDAO connection;
 	private Statement state;
 

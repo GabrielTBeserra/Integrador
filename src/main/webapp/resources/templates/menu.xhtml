@@ -43,9 +43,6 @@
 					
 					</p:commandButton>
 					
-							
-						
-						
 						<p:commandButton value="Servicos" 
 							onstart="startLoad();"
 							oncomplete="window.location.href = '#/Servicos'; stopLoad();"
@@ -55,14 +52,14 @@
 							action="#{pages.servicos}"
 							styleClass="menu-bar-nav-button" >
 							
-							<f:actionListener binding="#{servicos.init()}"/>
+						<f:actionListener binding="#{servicos.init()}"/>
 							
-							</p:commandButton>
+					</p:commandButton>
 							
 							
-							<p:commandButton value="Admin" 
+					<p:commandButton value="Admin" 
 							onstart="startLoad();"
-							oncomplete="window.location.href = '#/Servicos'; stopLoad();"
+							oncomplete="window.location.href = '#/Admin'; stopLoad();"
 							render="@form"
 							update="page-content" 
 							onerror="startError();"
@@ -75,7 +72,7 @@
 							
 							<p:commandButton value="LOGOUT" 
 							onstart="startLoad();"
-							oncomplete="window.location.href = '/Integrador-0.0.1-SNAPSHOT'; stopLoad();"
+							oncomplete="window.location.href = '/Integrador'; stopLoad();"
 							render="@form"
 							update="page-content" 
 							onerror="startError();"

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.unaerp.integrador.models.Admin;
 
-public interface CadastroFuncionarioDAO {
+public interface FuncionarioDAO {
 	public abstract void insert(Admin admin) throws SQLException;
 
 	public abstract void update(Admin admin) throws SQLException;

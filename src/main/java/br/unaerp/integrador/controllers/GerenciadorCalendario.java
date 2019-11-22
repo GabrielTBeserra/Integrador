@@ -26,8 +26,11 @@ import br.unaerp.integrador.DAO.ServicoDAOImple;
 @ViewScoped
 @ManagedBean(name = "scheduleBean")
 
-public class GerenciadorCalendario implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class GerenciadorCalendario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4301507958238479375L;
 	private ScheduleModel model;
 	private Agenda evento;
 	private ScheduleEvent event;
@@ -42,10 +45,6 @@ public class GerenciadorCalendario implements Serializable {
 
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public String getValorServico() {

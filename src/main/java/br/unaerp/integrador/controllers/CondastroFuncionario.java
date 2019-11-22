@@ -1,5 +1,6 @@
 package br.unaerp.integrador.controllers;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,9 +14,12 @@ import br.unaerp.integrador.models.Admin;
 
 @ManagedBean(name = "cadastrofunc")
 @ViewScoped
-public class CondastroFuncionario {
+public class CondastroFuncionario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8320082510482534410L;
 	private Admin admin;
-	private static final long serialVersionUID = 1L;
 	private List<Admin> listAdmin;
 	private List<Admin> adminFilter;
 	private Admin adminEdit;
@@ -76,9 +80,6 @@ public class CondastroFuncionario {
 
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public Admin getAdmin() {
 		return admin;

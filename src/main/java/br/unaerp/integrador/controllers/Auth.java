@@ -1,7 +1,7 @@
 package br.unaerp.integrador.controllers;
 
-import java.io.Console;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,7 +14,12 @@ import br.unaerp.integrador.models.Admin;
 
 @ManagedBean(name = "auth")
 @ViewScoped
-public class Auth {
+public class Auth implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5540465277215160971L;
 	private String user;
 	private String password;
 

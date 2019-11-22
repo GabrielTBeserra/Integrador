@@ -1,6 +1,5 @@
 package br.unaerp.integrador.controllers;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,11 +14,7 @@ import br.unaerp.integrador.models.Pessoa;
 
 @ManagedBean(name = "cadastro")
 @ViewScoped
-public class Cadastro implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Cadastro {
 	private List<Pessoa> listPessoa;
 	private List<Pessoa> pessoaFilter;
 	private Pessoa pessoa;
@@ -125,10 +120,6 @@ public class Cadastro implements Serializable {
 
 	public void setPessoaEdit(Pessoa pessoaEdit) {
 		this.pessoaEdit = pessoaEdit;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public List<Pessoa> getListPessoa() {
