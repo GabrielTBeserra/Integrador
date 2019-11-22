@@ -39,14 +39,27 @@ public class FuncionarioDAOimple implements CadastroFuncionarioDAO {
 	}
 
 	public void update(Admin admin) throws SQLException {
-		String query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? where idFuncionario = '"
-				+ admin.getId() + "'";
+		String query = "";
+		
+		if(admin.getSenha().equals("")) {
+			query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? where idFuncionario = '"
+					+ admin.getId() + "'";
+		} else {
+			query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? , senha = ? where idFuncionario = '"
+					+ admin.getId() + "'";
+		}
+		
+		
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
 		insert.setString(1, admin.getNome());
 		insert.setString(2, admin.getUsuario());
 		insert.setInt(3, admin.getNivel());
+		
+		if(!admin.getSenha().equals("")) {
+			insert.setString(4, admin.getSenha());
+		}
 
 		insert.executeUpdate();
 
@@ -97,14 +110,17 @@ public class FuncionarioDAOimple implements CadastroFuncionarioDAO {
 	}
 
 	public Admin auth(String user, String senha) {
-		Admin admin = new Admin();
+		Admin admin = null;
 		String stringConsulta = "SELECT * FROM funcionario where usuario='" + user + "' AND senha = '" + senha + "'";
 
 		try {
+			
+			
 			this.state = this.connection.db().createStatement();
 			ResultSet resultado = state.executeQuery(stringConsulta.toUpperCase());
 
 			while (resultado.next()) {
+				admin = new Admin();
 				admin.setId(resultado.getInt("idFuncionario"));
 				admin.setNivel(resultado.getInt("nivelPermissao"));
 				admin.setNome(resultado.getString("nomeFuncionario"));

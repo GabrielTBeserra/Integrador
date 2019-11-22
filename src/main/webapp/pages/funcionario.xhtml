@@ -168,6 +168,18 @@
 				            <f:selectItem itemLabel="Acesso total" itemValue="2" />
 				      		            
 				        </p:selectOneMenu> 
+				        
+				        <p:outputLabel styleClass="form-cadastro-label" 
+								for="senha"
+								value="SENHA: " />
+
+						<p:inputText styleClass="form-cadastro-item"
+								value="#{cadastrofunc.adminEdit.senha}"
+								id="senha" 
+								type="password"
+								maxlength="50"
+								size="14" 
+								required="true" />
 	                   
 	                </p:panelGrid>
 	                <f:facet name="footer">

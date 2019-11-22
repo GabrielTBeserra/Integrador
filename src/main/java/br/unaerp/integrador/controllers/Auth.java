@@ -1,5 +1,6 @@
 package br.unaerp.integrador.controllers;
 
+import java.io.Console;
 import java.io.IOException;
 
 import javax.faces.bean.ManagedBean;
@@ -37,7 +38,6 @@ public class Auth {
 		FuncionarioDAOimple auth = new FuncionarioDAOimple();
 		
 		Admin admin = auth.auth(this.user, this.password);
-		
 		
 		if(admin != null) {
 			SessionContext.getInstance().setAttribute("user", admin.getUsuario());
