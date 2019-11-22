@@ -7,11 +7,9 @@ import javax.faces.bean.ViewScoped;
 
 import br.unaerp.integrador.auth.SessionContext;
 
-
 @ManagedBean(name = "logout")
 @ViewScoped
-public class Logout implements Serializable{
-
+public class Logout implements Serializable {
 
 	/**
 	 * 
@@ -20,7 +18,7 @@ public class Logout implements Serializable{
 
 	public void logout() {
 		SessionContext.getInstance().encerrarSessao();
-		
+
 	}
-		
+
 }

@@ -3,7 +3,7 @@ package br.unaerp.integrador.DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.unaerp.integrador.controllers.Agenda;
+import br.unaerp.integrador.models.Agenda;
 
 public interface AgendamentoDAO {
 	public abstract void insert(Agenda evento) throws SQLException;

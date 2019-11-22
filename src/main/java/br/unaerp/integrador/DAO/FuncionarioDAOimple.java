@@ -40,24 +40,22 @@ public class FuncionarioDAOimple implements FuncionarioDAO {
 
 	public void update(Admin admin) throws SQLException {
 		String query = "";
-		
-		if(admin.getSenha().equals("")) {
+
+		if (admin.getSenha().equals("")) {
 			query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? where idFuncionario = '"
 					+ admin.getId() + "'";
 		} else {
 			query = "UPDATE funcionario SET nomeFuncionario = ? , usuario = ?, nivelPermissao = ? , senha = ? where idFuncionario = '"
 					+ admin.getId() + "'";
 		}
-		
-		
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
 		insert.setString(1, admin.getNome());
 		insert.setString(2, admin.getUsuario());
 		insert.setInt(3, admin.getNivel());
-		
-		if(!admin.getSenha().equals("")) {
+
+		if (!admin.getSenha().equals("")) {
 			insert.setString(4, admin.getSenha());
 		}
 
@@ -114,8 +112,7 @@ public class FuncionarioDAOimple implements FuncionarioDAO {
 		String stringConsulta = "SELECT * FROM funcionario where usuario='" + user + "' AND senha = '" + senha + "'";
 
 		try {
-			
-			
+
 			this.state = this.connection.db().createStatement();
 			ResultSet resultado = state.executeQuery(stringConsulta.toUpperCase());
 

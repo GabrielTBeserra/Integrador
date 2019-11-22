@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unaerp.integrador.controllers.Agenda;
+import br.unaerp.integrador.models.Agenda;
 
 public class AgendamentoDAOImple implements AgendamentoDAO {
 

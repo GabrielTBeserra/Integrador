@@ -45,7 +45,6 @@ public class ServicoDAOImple implements ServicoDAO {
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
-
 		insert.executeUpdate();
 
 		this.connection.disconnect();
@@ -82,7 +81,6 @@ public class ServicoDAOImple implements ServicoDAO {
 
 				Servico novoServico = new Servico();
 
-				
 				novoServico.setValor(valorServico);
 				novoServico.setNome(nomePessoa);
 				novoServico.setId(idPessoa);

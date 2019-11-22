@@ -48,7 +48,6 @@ public class PessoaDAOimple implements PessoaDAO {
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
-
 		insert.executeUpdate();
 
 		this.connection.disconnect();
@@ -61,8 +60,6 @@ public class PessoaDAOimple implements PessoaDAO {
 
 		PreparedStatement insert = this.connection.db().prepareStatement(query);
 
-		
-		
 		insert.setString(1, pessoa.getNome());
 		insert.setString(2, removerMascara(pessoa.getCpf()));
 		insert.setDate(3, dataConvertida);
@@ -100,7 +97,7 @@ public class PessoaDAOimple implements PessoaDAO {
 				novaPessoa.setId(idPessoa);
 				novaPessoa.setTelefone(telefone);
 				novaPessoa.setEndereco(endereco);
-				
+
 				pessoaList.add(novaPessoa);
 			}
 

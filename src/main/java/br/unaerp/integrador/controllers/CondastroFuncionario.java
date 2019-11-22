@@ -14,7 +14,7 @@ import br.unaerp.integrador.models.Admin;
 
 @ManagedBean(name = "cadastrofunc")
 @ViewScoped
-public class CondastroFuncionario implements Serializable{
+public class CondastroFuncionario implements Serializable {
 	/**
 	 * 
 	 */
@@ -79,7 +79,6 @@ public class CondastroFuncionario implements Serializable{
 	private void clear_form() {
 
 	}
-
 
 	public Admin getAdmin() {
 		return admin;

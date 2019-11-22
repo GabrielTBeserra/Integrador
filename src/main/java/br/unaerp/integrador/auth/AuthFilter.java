@@ -13,29 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author GabrielTeles
- * Classe resposnavel por filtar todas requisicoes da aplicacao
+ * @author GabrielTeles Classe resposnavel por filtar todas requisicoes da
+ *         aplicacao e em caso da sessao ja estiver expirada mandar para a
+ *         pagina de login
  */
+
 public class AuthFilter implements Filter {
 	public static String contexturl;
 
-	/**
-	 * Default constructor.
-	 */
 	public AuthFilter() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
@@ -46,7 +39,6 @@ public class AuthFilter implements Filter {
 		String loginURL = AuthFilter.contexturl + "/auth.xhtml";
 
 		HttpSession sess = ((HttpServletRequest) request).getSession(true);
-		
 
 		if (sess.getAttribute("user") == null) {
 			((HttpServletResponse) response).sendRedirect(loginURL);
@@ -59,11 +51,8 @@ public class AuthFilter implements Filter {
 
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+
 	}
 
 }

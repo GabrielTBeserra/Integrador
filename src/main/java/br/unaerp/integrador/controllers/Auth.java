@@ -14,8 +14,8 @@ import br.unaerp.integrador.models.Admin;
 
 @ManagedBean(name = "auth")
 @ViewScoped
-public class Auth implements Serializable{
-	
+public class Auth implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -41,16 +41,16 @@ public class Auth implements Serializable{
 
 	public void login() {
 		FuncionarioDAOimple auth = new FuncionarioDAOimple();
-		
+
 		Admin admin = auth.auth(this.user, this.password);
-		
-		if(admin != null) {
+
+		if (admin != null) {
 			SessionContext.getInstance().setAttribute("user", admin.getUsuario());
 			SessionContext.getInstance().setAttribute("nivel", admin.getNivel());
 			SessionContext.getInstance().setAttribute("nome", admin.getNome());
 			SessionContext.getInstance().setAttribute("id", admin.getId());
 			SessionContext.getInstance().setTempoDeSessao(10);
-			
+
 			String context = SessionContext.getInstance().getAttribute("context").toString();
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/");

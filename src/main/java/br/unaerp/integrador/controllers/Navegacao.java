@@ -8,18 +8,23 @@ import javax.faces.bean.ViewScoped;
 
 import br.unaerp.integrador.auth.SessionContext;
 
+/**
+ * 
+ * @author GabrielTeles 
+ * 		   Classe responsavel pela navegacao entre as paginas, a
+ *         cada botao do menu clicado ele chama um metodo que aplica o endereco
+ *         da pagina na variavel pages, que retorna essa pagina
+ *         
+ */
+
 @ViewScoped
 @ManagedBean(name = "pages")
 public class Navegacao implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 768635549877384988L;
 
 	/**
 	 * 
 	 */
-	
 
 	@ManagedProperty(value = "#{servicos}")
 	private String admin;
@@ -41,7 +46,7 @@ public class Navegacao implements Serializable {
 	public void funcionario() {
 		setPage("/pages/funcionario.xhtml");
 	}
-	
+
 	public void agendamento() {
 		setPage("/pages/agendamentos.xhtml");
 	}
@@ -49,7 +54,6 @@ public class Navegacao implements Serializable {
 	public void servicos() {
 		setPage("/pages/servicos.xhtml");
 	}
-
 
 	public String getAdmin() {
 		return admin;

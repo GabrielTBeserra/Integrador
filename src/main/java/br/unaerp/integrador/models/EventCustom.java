@@ -1,13 +1,10 @@
-package br.unaerp.integrador.controllers;
+package br.unaerp.integrador.models;
 
 import java.util.Date;
 import java.util.Map;
 
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleRenderingMode;
-
-import br.unaerp.integrador.models.Pessoa;
-import br.unaerp.integrador.models.Servico;
 
 public class EventCustom implements ScheduleEvent {
 

@@ -22,11 +22,13 @@ import org.primefaces.model.ScheduleModel;
 import br.unaerp.integrador.DAO.AgendamentoDAOImple;
 import br.unaerp.integrador.DAO.PessoaDAOimple;
 import br.unaerp.integrador.DAO.ServicoDAOImple;
+import br.unaerp.integrador.models.Agenda;
+import br.unaerp.integrador.models.EventCustom;
 
 @ViewScoped
 @ManagedBean(name = "scheduleBean")
 
-public class GerenciadorCalendario implements Serializable{
+public class GerenciadorCalendario implements Serializable {
 	/**
 	 * 
 	 */
@@ -99,7 +101,7 @@ public class GerenciadorCalendario implements Serializable{
 	}
 
 	@PostConstruct
-	public void init() {		
+	public void init() {
 		AgendamentoDAOImple eventos = new AgendamentoDAOImple();
 		List<Agenda> evnt = eventos.list();
 

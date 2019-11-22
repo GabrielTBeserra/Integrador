@@ -1,10 +1,7 @@
-package br.unaerp.integrador.controllers;
+package br.unaerp.integrador.models;
 
 import java.util.Date;
 import java.util.Objects;
-
-import br.unaerp.integrador.models.Pessoa;
-import br.unaerp.integrador.models.Servico;
 
 public class Agenda {
 	private Long id;

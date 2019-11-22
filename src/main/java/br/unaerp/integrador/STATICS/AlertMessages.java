@@ -3,6 +3,13 @@ package br.unaerp.integrador.STATICS;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+/**
+ * 
+ * @author GabrielTeles 
+ * 			Classe responsavel por conter todos os tipos de
+ *         mensagens que seram ultilizados durante a aplicacao
+ */
+
 public class AlertMessages {
 	public static final void sucesso_cadastro() {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -38,19 +45,20 @@ public class AlertMessages {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Servico adicionado com sucesso!", "Servico adicionado com sucesso!"));
 	}
-	
+
 	public static final void SQL_VALOR_DEPENDENTE() {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 				"Existe um agendamento com esse serviço!", "Existe um agendamento com esse serviço!"));
 	}
-	
+
 	public static final void SQL_VALOR_DEPENDENTE_PESSOA() {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 				"Esta pessoa esta agendada!", "Esta pessoa esta agendada!"));
 	}
+
 	public static final void USUARIO_INCORRETO() {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 				"USUARIO OU SENHA INCORRETOS!", "USUARIO OU SENHA INCORRETOS!"));
 	}
-	
+
 }

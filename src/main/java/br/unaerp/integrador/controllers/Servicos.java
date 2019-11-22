@@ -68,7 +68,6 @@ public class Servicos implements Serializable {
 		this.servicoEdit = servicoEdit;
 	}
 
-
 	public void edit(Servico servico) {
 		this.servicoEdit = servico;
 	}
@@ -108,7 +107,7 @@ public class Servicos implements Serializable {
 			delete.delete(this.servicoEdit);
 		} catch (SQLException e) {
 			System.out.println(e.getErrorCode());
-			if(e.getErrorCode() == 1451) {
+			if (e.getErrorCode() == 1451) {
 				AlertMessages.SQL_VALOR_DEPENDENTE();
 			}
 		}
