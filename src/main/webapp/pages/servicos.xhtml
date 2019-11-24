@@ -52,8 +52,8 @@
                     <h:outputText value="#{servico.valor}" />
                 </p:column>
                 <p:column headerText="Ações">
-                    <p:commandButton id="edit" onerror="startError();" onstart="startLoad();" oncomplete="stopLoad(); PF('eventDialog').show();" styleClass="view-button" actionListener="#{servicos.edit(servico)}" update="#{p:component('edit-servico')}" value="Editar" ajax="true">
-                    </p:commandButton>
+                    <p:commandButton id="edit" onerror="startError();" onstart="startLoad();" oncomplete="stopLoad(); PF('eventDialog').show();" styleClass="edit-button" actionListener="#{servicos.edit(servico)}" update="#{p:component('edit-servico')}" value="Editar" ajax="true">
+                 </p:commandButton>
 
 
 

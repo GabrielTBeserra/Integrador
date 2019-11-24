@@ -36,7 +36,7 @@
 
 
 
-            <p:commandButton styleClass="form-button insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Cadastrar" actionListener="#{cadastro.submitForm}" update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
+            <p:commandButton styleClass="insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Cadastrar" actionListener="#{cadastro.submitForm}" update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
 		</p:panelGrid>
 		</div>
         </h:form>
@@ -67,7 +67,7 @@
                     <h:outputText value="#{pessoa.cpf}" />
                 </p:column>
                 <p:column headerText="Ações">
-                    <p:commandButton id="edit" onerror="startError();" onstart="startLoad();" oncomplete="stopLoad(); PF('eventDialog').show();" styleClass="view-button" actionListener="#{cadastro.edit(pessoa)}" update="#{p:component('edit-servico')}" value="Editar" ajax="true">
+                    <p:commandButton id="edit" onerror="startError();" onstart="startLoad();" oncomplete="stopLoad(); PF('eventDialog').show();" styleClass="edit-button" actionListener="#{cadastro.edit(pessoa)}" update="#{p:component('edit-servico')}" value="Editar" ajax="true">
                     </p:commandButton>
 
 
