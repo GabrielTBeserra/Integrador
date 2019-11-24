@@ -4,13 +4,9 @@
 }
 
 body {
-	background-color: #D5D4D4;
+	background-color: #D5D4D4 !important;
 }
 
-.menu-bar {
-	height: 60px;
-	background-color: red;
-}
 
 .menu-bar-nav-button {
 	text-shadow: 0px !important;
@@ -25,8 +21,23 @@ body {
 	text-decoration: none !important;
 	border-color: rgba(0, 0, 0, 0);
 	padding-right: 20px !important;
+	margin: 7px;
 }
 
 .calendar {
 	width: 500px;
+}
+
+.navbar-default {
+	background-color: red !important;
+	border: none !important;
+	border-radius: 0px !important;
+}
+
+.form-cadastro-label {
+	display: inline-block !important;
+}
+
+.form-cadastro-item {
+	display: inline-block !important;
 }

@@ -3,23 +3,31 @@
 
     <div>
         <h:form id="servico-form">
-            <p:messages id="messages" showDetail="false" closable="true">
-                <p:autoUpdate />
-            </p:messages>
+            
+            
+            <div class="ui-fluid">
+	            <p:messages id="messages" showDetail="false" closable="true">
+	                <p:autoUpdate />
+	            </p:messages>
+           
+	            <p:panelGrid columns="1" columnClasses="ui-g-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+		            <p:outputLabel styleClass="form-cadastro-label" for="nome" value="NOME SERVICO:" />
+		
+		            <p:inputText styleClass="form-cadastro-item" id="nome" maxlength="50" required="true" value="#{servicos.servico.nome}" />
+		
+		            <p:outputLabel styleClass="form-cadastro-label" for="preco" value="Preco:" />
+		
+		            <p:inputNumber required="true" id="preco" value="#{servicos.servico.valor}" />
+	
+	           		<p:commandButton styleClass="form-button insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Adicionar" actionListener="#{servicos.submitForm}" update="#{p:component('servico-list')} , servico-form" />
+	            
+	            </p:panelGrid>
+            </div>
+            
+            
 
 
-            <p:outputLabel styleClass="form-cadastro-label" for="nome" value="NOME SERVICO:" />
-
-            <h:inputText styleClass="form-cadastro-item" id="nome" maxlength="50" size="14" required="true" value="#{servicos.servico.nome}" />
-
-            <p:outputLabel styleClass="form-cadastro-label" for="preco" value="Preco:" />
-
-            <p:inputNumber required="true" id="preco" value="#{servicos.servico.valor}" />
-
-
-
-            <p:commandButton styleClass="form-button insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Adicionar" actionListener="#{servicos.submitForm}" update="#{p:component('servico-list')} , servico-form" />
-
+           
         </h:form>
         <h:form id="servico-list">
             <p:dataTable id="listServico" var="servico" value="#{servicos.listServico}" widgetVar="listaservicos" multiViewState="true" rows="15" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

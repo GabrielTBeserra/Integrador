@@ -3,39 +3,42 @@
 
     <div>
         <h:form id="fomulario-cadastro-servico">
-            <p:messages id="messages" showDetail="false" closable="true">
+        <div class="ui-fluid">
+        <p:messages id="messages"  showDetail="false" closable="true">
                 <p:autoUpdate />
             </p:messages>
+        <p:panelGrid columns="1" columnClasses="ui-g-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+            
 
 
 
             <p:outputLabel styleClass="form-cadastro-label" for="nome" value="NOME:" />
-
-            <h:inputText styleClass="form-cadastro-item" value="#{cadastro.pessoa.nome}" id="nome" maxlength="50" size="14" required="true" />
+            <p:inputText styleClass="form-cadastro-item" value="#{cadastro.pessoa.nome}" id="nome" maxlength="50"  required="true" />
 
             <p:outputLabel style="form-cadastro-label" styleClass="form-cadastro-label" for="cpf" value="CPF:" />
 
-            <p:inputMask styleClass="form-cadastro-item" id="cpf" mask="999.999.999-99" value="#{cadastro.pessoa.cpf}" size="14" autocomplete="true" maxlength="14" required="true" placeholder="___.___.___-__" />
+            <p:inputMask styleClass="form-cadastro-item" id="cpf" mask="999.999.999-99" value="#{cadastro.pessoa.cpf}"  autocomplete="true" maxlength="14" required="true" placeholder="___.___.___-__" />
 
             <p:outputLabel style="form-cadastro-label" styleClass="form-cadastro-label" for="nascimento" value="Data Nascimento:" />
 
-            <p:calendar inputStyleClass="form-cadastro-item" id="nascimento" value="#{cadastro.pessoa.dtnNascimento}" pattern="dd/MM/yyyy" maxlength="10" required="true" size="9" placeholder="__/__/____" mask="99/99/9999" />
+            <p:calendar inputStyleClass="form-cadastro-item" id="nascimento" value="#{cadastro.pessoa.dtnNascimento}" pattern="dd/MM/yyyy" maxlength="10" required="true"  placeholder="__/__/____" mask="99/99/9999" />
 
 
 
 
             <p:outputLabel style="form-cadastro-label" styleClass="form-cadastro-label" for="telefone" value="TELEFONE:" />
 
-            <p:inputMask styleClass="form-cadastro-item" id="telefone" value="#{cadastro.pessoa.telefone}" mask="(99)99999-9999" size="14" autocomplete="true" maxlength="14" required="true" placeholder="()_____-____" />
+            <p:inputMask styleClass="form-cadastro-item" id="telefone" value="#{cadastro.pessoa.telefone}" mask="(99)99999-9999" autocomplete="true" maxlength="14" required="true" placeholder="()_____-____" />
 
             <p:outputLabel styleClass="form-cadastro-label" for="end" value="Endereco" />
 
-            <h:inputText styleClass="form-cadastro-item" size="14" id="end" value="#{cadastro.pessoa.endereco}" maxlength="50" required="true" />
+            <p:inputText styleClass="form-cadastro-item" id="end" value="#{cadastro.pessoa.endereco}" maxlength="50" required="true" />
 
 
 
             <p:commandButton styleClass="form-button insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Cadastrar" actionListener="#{cadastro.submitForm}" update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
-
+		</p:panelGrid>
+		</div>
         </h:form>
         <h:form id="pessoas-list">
             <p:dataTable id="listServico" var="pessoa" value="#{cadastro.listPessoa}" widgetVar="listapessoas" multiViewState="true" rows="15" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

@@ -2,7 +2,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
 
 	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
 		closable="false" resizable="false" showHeader="false">
@@ -22,63 +23,72 @@
 		
 			<div class="menu-bar">
 				<h:form>
-					<p:commandButton value="Agendamento" 
-							onstart="startLoad();"
-							oncomplete="window.location.href = '#/Agendamento'; stopLoad();"
-							render="@form"
-							update="page-content" 
-							onerror="startError();"
-							action="#{pages.agendamento}"
-							styleClass="menu-bar-nav-button" />	
-										
-					<p:commandButton value="Cadastrar" 
-							onstart="startLoad();"
-							oncomplete="window.location.href = '#/Cadastrar'; stopLoad();"
-							render="@form"
-							update="page-content" 
-							onerror="startError();"
-							action="#{pages.cadastrar}"
-							styleClass="menu-bar-nav-button" >
-					<f:actionListener binding="#{cadastro.init()}"/>
-					
-					</p:commandButton>
-					
-						<p:commandButton value="Servicos" 
-							onstart="startLoad();"
-							oncomplete="window.location.href = '#/Servicos'; stopLoad();"
-							render="@form"
-							update="page-content" 
-							onerror="startError();"
-							action="#{pages.servicos}"
-							styleClass="menu-bar-nav-button" >
-							
-						<f:actionListener binding="#{servicos.init()}"/>
-							
-					</p:commandButton>
-							
-							
-					<p:commandButton value="Admin" 
-							onstart="startLoad();"
-							oncomplete="window.location.href = '#/Admin'; stopLoad();"
-							render="@form"
-							update="page-content" 
-							onerror="startError();"
-							rendered="#{pages.admin == '2'}"
-							action="#{pages.funcionario}"
-							styleClass="menu-bar-nav-button" >
-							
+					<b:navBar fluid="true">
+					  <b:navbarLinks>
+					    	<p:commandButton value="Agendamento" 
+								onstart="startLoad();"
+								oncomplete="window.location.href = '#/Agendamento'; stopLoad();"
+								render="@form"
+								update="page-content" 
+								onerror="startError();"
+								action="#{pages.agendamento}"
+								styleClass="menu-bar-nav-button" />	
+											
+						<p:commandButton value="Cadastrar" 
+								onstart="startLoad();"
+								oncomplete="window.location.href = '#/Cadastrar'; stopLoad();"
+								render="@form"
+								update="page-content" 
+								onerror="startError();"
+								action="#{pages.cadastrar}"
+								styleClass="menu-bar-nav-button" >
+						<f:actionListener binding="#{cadastro.init()}"/>
+						
+						</p:commandButton>
+						
+							<p:commandButton value="Servicos" 
+								onstart="startLoad();"
+								oncomplete="window.location.href = '#/Servicos'; stopLoad();"
+								render="@form"
+								update="page-content" 
+								onerror="startError();"
+								action="#{pages.servicos}"
+								styleClass="menu-bar-nav-button" >
+								
+							<f:actionListener binding="#{servicos.init()}"/>
+								
+						</p:commandButton>
+								
+								
+						<p:commandButton value="Admin" 
+								onstart="startLoad();"
+								oncomplete="window.location.href = '#/Admin'; stopLoad();"
+								render="@form"
+								update="page-content" 
+								onerror="startError();"
+								rendered="#{pages.admin == '2'}"
+								action="#{pages.funcionario}"
+								styleClass="menu-bar-nav-button" >
+								
 							<f:actionListener binding="#{cadastrofunc.init()}"/>
-							</p:commandButton>
-							
-							<p:commandButton value="LOGOUT" 
-							onstart="startLoad();"
-							oncomplete="window.location.href = '/Integrador'; stopLoad();"
-							render="@form"
-							update="page-content" 
-							onerror="startError();"
-							action="#{logout.logout}"
-							styleClass="menu-bar-nav-button" />
-					
+						</p:commandButton>
+								
+						
+				  
+				  </b:navbarLinks>
+				  
+				  <b:navbarLinks pull="right">
+				  <p:commandButton value="LOGOUT" 
+									onstart="startLoad();"
+									oncomplete="window.location.href = '/Integrador'; stopLoad();"
+									render="@form"
+									update="page-content" 
+									onerror="startError();"
+									action="#{logout.logout}"
+									styleClass="menu-bar-nav-button" />
+				  </b:navbarLinks>
+			</b:navBar>		
+						
 				</h:form>
 			</div>
 		

@@ -38,12 +38,12 @@
 
         <p:growl id="avisosGrowl" />
         <h:form id="agenda">
-            <p:schedule resizable="false" value="#{scheduleBean.model}" styleClass="teste" widgetVar="scheduleExemplo" id="scheduleExemplo" timeZone="GMT-3" locale="pt" timeFormat="HH:mm" axisFormat="H:mm" style="width: 1000px; height: 700px;">
-                <p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />
-                <p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" update="#{p:component('scheduleExemploForm')}" oncomplete="PF('eventDialog').show();" />
+            <p:schedule resizable="false" value="#{scheduleBean.model}" styleClass="teste" widgetVar="calendario" id="calendario" timeZone="GMT-3" locale="pt" timeFormat="HH:mm" axisFormat="H:mm" style="width: 1000px; height: 700px;">
+                <p:ajax event="dateSelect" listener="#{scheduleBean.onDateSelect}" update="#{p:component('calendarioForm')}" oncomplete="PF('eventDialog').show();" />
+                <p:ajax event="eventSelect" listener="#{scheduleBean.onEventSelect}" update="#{p:component('calendarioForm')}" oncomplete="PF('eventDialog').show();" />
             </p:schedule>
         </h:form>
-        <h:form id="scheduleExemploForm">
+        <h:form id="calendarioForm">
             <p:dialog widgetVar="eventDialog" resizable="false" header="Horario" responsive="true" modal="true">
                 <p:panelGrid columns="1" id="panelGridEvento" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                     <p:outputLabel value="Cliente" />
@@ -68,11 +68,11 @@
                 </p:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="Fechar" onclick="PF('eventDialog').hide(); return false;" />
-                    <p:commandButton rendered="#{scheduleBean.evento.titulo == ''}" oncomplete="location.reload();" value="Salvar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.salvar()}"
+                    <p:commandButton rendered="#{scheduleBean.evento.titulo == ''}" oncomplete="location.reload();" value="Salvar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('calendario')},@form" process="@form" action="#{scheduleBean.salvar()}"
                     />
-                    <p:commandButton rendered="#{scheduleBean.evento.titulo != ''}" oncomplete="location.reload();" value="Atualizar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('scheduleExemplo')},@form" process="@form" action="#{scheduleBean.atualizar()}"
+                    <p:commandButton rendered="#{scheduleBean.evento.titulo != ''}" oncomplete="location.reload();" value="Atualizar" update="#{p:component('avisosGrowl')},#{p:component('agenda')},#{p:component('calendario')},@form" process="@form" action="#{scheduleBean.atualizar()}"
                     />
-                    <p:commandButton value="Remover" oncomplete="location.reload();" update="#{p:component('avisosGrowl')},#{p:component('scheduleExemplo')},#{p:component('agenda')},@form,:agenda" action="#{scheduleBean.remover()}" />
+                    <p:commandButton value="Remover" oncomplete="location.reload();" update="#{p:component('avisosGrowl')},#{p:component('calendario')},#{p:component('agenda')},@form,:agenda" action="#{scheduleBean.remover()}" />
                 </f:facet>
             </p:dialog>
         </h:form>

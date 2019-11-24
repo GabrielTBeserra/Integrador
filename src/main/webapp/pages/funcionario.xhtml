@@ -3,26 +3,30 @@
 
     <div>
         <h:form id="fomulario-cadastro-servico">
-            <p:messages id="messages" showDetail="false" closable="true">
+             <div class="ui-fluid">
+        <p:messages id="messages"  showDetail="false" closable="true">
                 <p:autoUpdate />
             </p:messages>
+        <p:panelGrid columns="1" columnClasses="ui-g-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+       
 
             <p:outputLabel styleClass="form-cadastro-label" for="nome" value="NOME:" />
-            <h:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.nome}" id="nome" maxlength="50" size="14" required="true" />
+            <p:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.nome}" id="nome" maxlength="50" required="true" />
 
             <p:outputLabel styleClass="form-cadastro-label" for="usuario" value="USUARIO:" />
-            <h:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.usuario}" id="usuario" maxlength="50" size="14" required="true" />
+            <p:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.usuario}" id="usuario" maxlength="50"  required="true" />
 
 
-            <p:selectOneMenu id="console" value="#{cadastrofunc.admin.nivel}" style="width:125px">
+            <p:selectOneMenu id="console" value="#{cadastrofunc.admin.nivel}" >
                 <f:selectItem itemLabel="Cadastro clientes" itemValue="1" />
                 <f:selectItem itemLabel="Acesso total" itemValue="2" />
             </p:selectOneMenu>
 
             <p:outputLabel styleClass="form-cadastro-label" for="senha" value="SENHA: " />
-            <p:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.senha}" id="senha" type="password" maxlength="50" size="14" required="true" />
+            <p:inputText styleClass="form-cadastro-item" value="#{cadastrofunc.admin.senha}" id="senha" type="password" maxlength="50" required="true" />
             <p:commandButton styleClass="form-button insert-button" onstart="startLoad();" oncomplete="stopLoad();" value="Cadastrar" actionListener="#{cadastrofunc.submitForm}" update="fomulario-cadastro-servico , #{p:component('pessoas-list')}" />
-
+ 		</p:panelGrid>
+        </div>
         </h:form>
         <h:form id="pessoas-list">
             <p:dataTable id="listServico" var="func" value="#{cadastrofunc.listAdmin}" widgetVar="listapessoas" multiViewState="true" rows="15" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
