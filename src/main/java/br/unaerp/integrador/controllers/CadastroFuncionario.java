@@ -14,7 +14,7 @@ import br.unaerp.integrador.models.Admin;
 
 @ManagedBean(name = "cadastrofunc")
 @ViewScoped
-public class CondastroFuncionario implements Serializable {
+public class CadastroFuncionario implements Serializable {
 	/**
 	 * 
 	 */
@@ -30,7 +30,7 @@ public class CondastroFuncionario implements Serializable {
 		this.listAdmin = listaAdmins.list();
 	}
 
-	public CondastroFuncionario() {
+	public CadastroFuncionario() {
 		this.admin = new Admin();
 		this.adminEdit = new Admin();
 	}
