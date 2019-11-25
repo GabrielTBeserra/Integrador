@@ -94,6 +94,11 @@ body {
 	border-radius: 0px !important;
 }
 
+.ui-fluid {
+	margin-right: 15%;
+	margin-left: 15%;
+}
+
 
 .form-cadastro-label {
 	display: inline-block !important;

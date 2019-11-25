@@ -12,7 +12,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleModel;
@@ -202,7 +201,8 @@ public class GerenciadorCalendario implements Serializable {
 		Date dataSelecionada = (Date) selectEvent.getObject();
 
 		this.evento.setDataInicio(dataSelecionada);
-		this.evento.setDataFim(DateUtils.addHours(dataSelecionada, 1));
+
+		this.evento.setDataFim(dataSelecionada);
 
 	}
 
