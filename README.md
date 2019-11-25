@@ -1,6 +1,6 @@
 # Leticia Celestino Estetica
 
-### Aplicacao feita para o projeto integrador 2019 do curso de engenharia de software , Univercidade de Ribeirao Preto
+### Aplicacao feita para o projeto integrador 2019 do curso de engenharia de software , Universidade de Ribeirao Preto
 
 
 ## Estrutura do projeto
